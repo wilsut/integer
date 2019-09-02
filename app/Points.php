@@ -9,6 +9,12 @@ class Points extends Model
     protected $table = 'points';
     protected $fillable = [
       'point',
-      'note'
+      'note',
+      'student_id',
     ];
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

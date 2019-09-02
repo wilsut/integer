@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Points;
+use App\Student;
 
 class PointController extends Controller
 {
@@ -14,7 +15,8 @@ class PointController extends Controller
      */
     public function index()
     {
-        //
+        $points = Points::all();
+        return view('admin.points.index', compact('points'));
     }
 
     /**
@@ -24,7 +26,8 @@ class PointController extends Controller
      */
     public function create()
     {
-        //
+        $students = Student::all();
+        return view('admin.points.create', compact('students'));
     }
 
     /**
@@ -35,7 +38,8 @@ class PointController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Points::create($request->all());
+        return redirect()->route('points.index');
     }
 
     /**
@@ -55,9 +59,10 @@ class PointController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Points $point)
     {
-        //
+        $students = Student::all();
+        return view('admin.points.edit', compact('students', 'point'));
     }
 
     /**
@@ -67,9 +72,10 @@ class PointController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Points $point)
     {
-        //
+        $point->update($request->all());
+        return redirect()->route('points.index');
     }
 
     /**

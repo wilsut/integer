@@ -1,31 +1,29 @@
 @extends('layouts.index')
 
 @section('content')
-<a href="{{ route('students.create') }}" class="btn btn-primary" style="margin-bottom: 20px">Create</a>
+<a href="{{ route('points.create') }}" class="btn btn-primary" style="margin-bottom: 20px">Create</a>
 <table id="table" class="table table-striped mt-5">
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">NRP</th>
-            <th scope="col">Name</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Points</th>
+            <th scope="col">Point</th>
+            <th scope="col">Student</th>
+            <th scope="col">Note</th>
             <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
         <?php $i=0 ?>
-        @foreach($students as $student)
+        @foreach($points as $point)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $student->nrp }}</td>
-            <td>{{ $student->name }}</td>
-            <td>{{ $student->gender }}</td>
-            <td>{{ $student->points->sum('point') }}</td>
+            <td>{{ $point->point }}</td>
+            <td>{{ $point->student->nrp."-".$point->student->name }}</td>
+            <td>{{ $point->note }}</td>
             <td>
-                <a href="{{ route('students.edit', $student->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i
+                <a href="{{ route('points.edit', $point->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i
                         class="material-icons">&#xE254;</i></a>
-                <a href="#" class="delete-item" title="Delete" data-toggle="tooltip" data-id="{{ $student->id }}"><i
+                <a href="#" class="delete-item" title="Delete" data-toggle="tooltip" data-id="{{ $point->id }}"><i
                         class="material-icons">&#xE872;</i></a>
             </td>
         </tr>

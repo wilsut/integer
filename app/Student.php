@@ -11,4 +11,9 @@ class Student extends Model
       'name',
       'gender'
     ];
+
+    public function points()
+    {
+        return $this->hasMany(Points::class);
+    }
 }
