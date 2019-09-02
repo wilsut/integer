@@ -1,29 +1,32 @@
 @extends('layouts.index')
 
 @section('content')
-<form method="post" action="{{ url('points/'.$student->id)}}">
+<form method="post" action="{{ url('points/'.$point->id)}}">
     @csrf
     @method('patch')
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Name</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="name" placeholder="Name" value="{{ $student->name }}" required>
-        </div>
-    </div>
-    <div class="form-group row">
         <label class="col-sm-2 col-form-label">NRP</label>
         <div class="col-sm-10">
-        <input type="text" class="form-control" name="nrp" placeholder="NRP" value="{{ $student->nrp }}" required>
+            <input type="text" class="form-control" placeholder="NRP" value="{{ $point->student->nrp }}" disabled>
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Student</label>
+        <label class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
-            <select class="form-control" name="student_id">
-              <?php foreach ($students as $student): ?>
-                <option value="{{ $student->id }}">{{ $student->nrp."-".$student->name }}</option>
-              <?php endforeach; ?>
-            </select>
+            <input type="text" class="form-control" placeholder="Name" value="{{ $point->student->name }}" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Point</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="point" placeholder="Point" value={{ $point->point }}
+                required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Note</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="note" placeholder="Note" value={{ $point->note }} required>
         </div>
     </div>
     <div class="form-group row">

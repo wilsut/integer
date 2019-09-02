@@ -18,10 +18,10 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Student</label>
         <div class="col-sm-10">
-            <select class="form-control" name="student_id">
-              <?php foreach ($students as $student): ?>
-                <option value="{{ $student->id }}">{{ $student->nrp."-".$student->name }}</option>
-              <?php endforeach; ?>
+            <select name="student_id[]" class="form-control selectpicker" multiple data-live-search="true">
+                <?php foreach ($students as $student): ?>
+                <option value="{{ $student->id }}">{{ $student->nrp." - ".$student->name }}</option>
+                <?php endforeach; ?>
             </select>
         </div>
     </div>

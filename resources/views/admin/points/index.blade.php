@@ -6,9 +6,10 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Point</th>
-            <th scope="col">Student</th>
+            <th scope="col">NRP</th>
+            <th scope="col">Name</th>
             <th scope="col">Note</th>
+            <th scope="col">Point</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -17,9 +18,10 @@
         @foreach($points as $point)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $point->point }}</td>
-            <td>{{ $point->student->nrp."-".$point->student->name }}</td>
+            <td>{{ $point->student->nrp }}</td>
+            <td>{{ $point->student->name }}</td>
             <td>{{ $point->note }}</td>
+            <td>{{ $point->point }}</td>
             <td>
                 <a href="{{ route('points.edit', $point->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i
                         class="material-icons">&#xE254;</i></a>

@@ -14,7 +14,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
+        $students = Student::orderBy('nrp')->get();
         return view('admin.students.index', compact('students'));
     }
 

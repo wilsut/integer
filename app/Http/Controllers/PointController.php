@@ -26,7 +26,7 @@ class PointController extends Controller
      */
     public function create()
     {
-        $students = Student::all();
+        $students = Student::orderBy('nrp')->get();
         return view('admin.points.create', compact('students'));
     }
 
@@ -38,7 +38,19 @@ class PointController extends Controller
      */
     public function store(Request $request)
     {
-        Points::create($request->all());
+        $students = $request->student_id;
+        $point = (float)$request->point;
+        $note = $request->note;
+
+        foreach ($students as $id) {
+            $item = new Points([
+                'student_id' => (int)$id,
+                'point' => $point,
+                'note' => $note,
+            ]);
+            $item->save();
+        }
+
         return redirect()->route('points.index');
     }
 
@@ -61,8 +73,7 @@ class PointController extends Controller
      */
     public function edit(Points $point)
     {
-        $students = Student::all();
-        return view('admin.points.edit', compact('students', 'point'));
+        return view('admin.points.edit', compact('point'));
     }
 
     /**
